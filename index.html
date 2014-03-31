@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>What's My User Agent?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css"/>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
+<style type="text/css">
+    .jumbotron h1 {font-size: 32px; line-height: 40px;}
+</style>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">What's My User Agent?</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="http://nfriedly.com/" title="Javascript and Node.js expert">by Nathan Friedly</a>
+            </li>
+            <li>
+              <a href="https://github.com/nfriedly/whatsmyua.com"><i class="fa fa-github"></i> Source</a>
+            </li>
+        </div>
+      </div>
+    </div>
+
+      <header class="jumbotron">
+         <div class="container">
+            <h1><script>document.write(navigator.userAgent);</script></h1>
+        </div>
+      </header>
+      <main>
+        <div class="container">
+            <h2>Where's the cool breakdown table?</h2>
+            <p>It broke. Or, really, the app got moved to a new server, but it was several years old and depended that other stuff that was several years old, and I can't seem to get the right combination of outdated software installed to get the app running again and I don't have the time to update/rewrite everything right now. So, this is all you get. Take it or leave it.</p>
+            
+              <h2>What is a "User Agent"?</h2>
+              <p>A User Agent is a short string that web browsers and other applications send to identify themselves to web servers. </p>
+              <p>Unfortunately, most browsers falsify part of their User-Agent header in an attempt to be compatible with more web servers.</p>
+  
+                <!-- h5>Tips</h5>
+
+                <ul>
+                <li>Click on your user-agent string (in the green box) to get a link that you can share with other people.</li>
+                <li>Visit <code>whatsmyua.com/ua/[any-user-agent-string]</code>, the site will give you a breakdown for that string.</li>
+                <li>If something is missing or wrong, or you have any other ideas for improving the site, <a href="http://nfriedly.com/contact/">click here to let me know</a>.</li>
+                </ul -->
+        </div>
+      </main>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
