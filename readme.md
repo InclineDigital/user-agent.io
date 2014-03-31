@@ -1,6 +1,6 @@
 Whats My User Agent
 ===================
-http://whatsmyua.com/
+http://www.whatsmyua.com/
 
 This was a project I did a while back to learn about both Ruby on Rails and all the crazy things that get crammed into user agent strings.
 
