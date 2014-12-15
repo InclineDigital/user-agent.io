@@ -37,7 +37,13 @@
 
       <header class="jumbotron">
          <div class="container">
-            <h1><a href="#"><script>document.write(navigator.userAgent);</script></a></h1>
+            <h1><a href="#" id="ua-link"></a></h1>
+            <script>
+                var ua = location.search.replace('#', '') || navigator.userAgent;
+                uaLink = document.getElementById('ua-link');
+                uaLink.href = '#' + ua;
+                uaLink.innerText = uaLink.textContent = ua;
+            </script>
         </div>
       </header>
       <main>
@@ -60,13 +66,13 @@
               <p>A User Agent is a short string that web browsers and other applications send to identify themselves to web servers. </p>
               <p>Unfortunately, most browsers falsify part of their User-Agent header in an attempt to be compatible with more web servers.</p>
   
-                <!-- h5>Tips</h5>
+                <h5>Tips</h5>
 
                 <ul>
-                <li>Click on your user-agent string (in the green box) to get a link that you can share with other people.</li>
-                <li>Visit <code>whatsmyua.com/ua/[any-user-agent-string]</code>, the site will give you a breakdown for that string.</li>
-                <li>If something is missing or wrong, or you have any other ideas for improving the site, <a href="http://nfriedly.com/contact/">click here to let me know</a>.</li>
-                </ul -->
+                    <li>Click on your user-agent string (in the green box) to get a link that you can share with other people.</li>
+                    <li>Visit <code>whatsmyua.com/#[any-user-agent-string]</code>, the site will give you a breakdown for that string.</li>
+                    <li>If something is missing or wrong, or you have any other ideas for improving the site, <a href="https://github.com/nfriedly/whatsmyua.com">submit an issue or pull request on Github./a>.</li>
+                </ul>
         </div>
       </main>
     </div>
@@ -74,7 +80,7 @@
     <script src="http://wzrd.in/standalone/ua-parser-js"></script>
     <script>
         var UAParser = window.uaParserJs;
-        var parser = new UAParser(navigator.userAgent);
+        var parser = new UAParser(ua);
         $('#breakdown').text(JSON.stringify(parser.getResult(), undefined, 2));
     </script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
