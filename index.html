@@ -40,10 +40,15 @@
          <div class="container">
             <h1><a href="#" id="ua-link"></a></h1>
             <script>
-                var ua = location.search.replace('#', '') || navigator.userAgent;
-                uaLink = document.getElementById('ua-link');
-                uaLink.href = '#' + ua;
-                uaLink.innerText = uaLink.textContent = ua;
+                function getUa() {
+                    return location.search.replace('#', '') || navigator.userAgent;
+                }
+                function updateLink(ua) {
+                    var uaLink = document.getElementById('ua-link')
+                    uaLink.href = '#' + ua;
+                    uaLink.innerText = uaLink.textContent = ua;
+                }
+                updateLink(getUa());
             </script>
         </div>
       </header>
@@ -86,9 +91,17 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="http://wzrd.in/standalone/ua-parser-js"></script>
     <script>
-        var UAParser = window.uaParserJs;
-        var parser = new UAParser(ua);
-        $('#breakdown').text(JSON.stringify(parser.getResult(), undefined, 2));
+        function updateBreakdown(ua) {
+            var UAParser = window.uaParserJs;
+            var parser = new UAParser(ua);
+            $('#breakdown').text(JSON.stringify(parser.getResult(), undefined, 2));
+        }
+        updateBreakdown(getUa());
+        window.onhashchange = function() {
+            var ua = getUa();
+            updateLink(ua);
+            updateBreakdown(ua);
+        }
     </script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     
