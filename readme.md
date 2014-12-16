@@ -6,7 +6,7 @@ This was a project I did a while back to learn about both Ruby on Rails and all 
 
 Unfortunately, time has not treated it well, and I can't even get all of the correct (outdated) dependencies to install on my laptop. So rather then continue to fight with it, I decided to just start out fresh.
 
-The new version doesn't yet have all of the data that the old version had, but I'll be adding it as I have time.
+The new version doesn't yet have all of the data that the [old version](https://github.com/nfriedly/whatsmyua.com-v1) had, but I'll be adding it as I have time.
 
 MIT License
 ===========
