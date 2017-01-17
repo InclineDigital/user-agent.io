@@ -42,10 +42,10 @@
             <h1><a href="#" id="ua-link"></a></h1>
             <script>
                 function getUa() {
-                    return location.hash.replace('#', '') || navigator.userAgent;
+                    return decodeURIComponent(location.hash.replace('#', '')) || navigator.userAgent;
                 }
                 function updateLink(ua) {
-                    var uaLink = document.getElementById('ua-link')
+                    var uaLink = document.getElementById('ua-link');
                     uaLink.href = '#' + ua;
                     uaLink.innerText = uaLink.textContent = ua;
                 }
