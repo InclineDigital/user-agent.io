@@ -6,11 +6,15 @@ This is a tool displays your browser's User-Agent string and gives a brief summa
 
 It's been through several iterations at this point, but it keeps gaining features (and popularity)
 
+Built with React, Next.js, Node.js, and Bootstrap.
+
+Created by [Incline](http://www.incline.systems)
+
 MIT License
 ===========
 
 
-Copyright (c) 2014 Nathan Friedly - http://nfriedly.com
+Copyright (c) 2017 Nathan Friedly - http://www.incline.systems
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

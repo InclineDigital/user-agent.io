@@ -1,0 +1,34 @@
+{
+  "name": "user-agent.io",
+  "version": "1.0.0",
+  "description": "Reports your browser's User-Agent string and, with a special link, that of other browsers",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "next": "^2.3.0-alpha1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "ua-parser-js": "^0.7.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "deploy": "npm run build && bluemix app push user-agent",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "engines": {
+    "node": "7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfriedly/user-agent.io.git"
+  },
+  "author": "Nathan Friedly (http://www.nfriedly.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nfriedly/user-agent.io/issues"
+  },
+  "homepage": "https://github.com/nfriedly/user-agent.io#readme"
+}
