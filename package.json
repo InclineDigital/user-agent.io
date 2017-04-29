@@ -1,6 +1,6 @@
 {
   "name": "user-agent.io",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Reports your browser's User-Agent string and, with a special link, that of other browsers",
   "main": "index.js",
   "dependencies": {
