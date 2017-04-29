@@ -10,9 +10,11 @@ app.prepare()
   .then(() => {
     const server = express()
 
-    server.get('/ua/:ua', (req, res) => {
+    // request expects named params to not contain a slash
+    // so, just capture it all with * and then substr out the /ua/ part
+    server.get('/ua/*', (req, res) => {
       const actualPage = '/'
-      const queryParams = { ua: req.params.ua }
+      const queryParams = { ua: decodeURIComponent(req.url.substr(4)) }
       app.render(req, res, actualPage, queryParams)
     })
 
