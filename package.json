@@ -14,10 +14,12 @@
     "ua-parser-js": "^0.7.12",
     "vcap_services": "^0.3.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server.js",
+    "dev": "nodemon server.js",
     "build": "next build",
     "deploy": "npm run build && bluemix app push user-agent",
     "start": "NODE_ENV=production node server.js"
