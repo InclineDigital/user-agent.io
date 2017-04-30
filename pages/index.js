@@ -1,15 +1,24 @@
+import Link from 'next/link'
 import Layout from '../components/Layout.js'
 import BannerAdd from '../components/BannerAdd'
 import UA from '../components/UA'
 
-const Index = ({ua, source}) => (
+const Index = ({uaOpts}) => (
   <Layout>
     <main>
 
-     <UA source={source} ua={ua} />
+     <UA {...uaOpts} />
 
       <section className="container">
         <BannerAdd/>
+
+        <h2 style={{marginBottom: '30px'}}>
+          <Link>
+            <a href="/host" className="text-success">
+              <b>New:</b> See someone else's User Agent! <button className="btn btn-success">Click Here</button>
+            </a>
+          </Link>
+        </h2>
 
         <h2>What is a "User Agent" anyways?</h2>
         <p>A <a href="https://en.wikipedia.org/wiki/User_agent#Use_in_HTTP">User Agent</a> is
@@ -33,6 +42,7 @@ const Index = ({ua, source}) => (
 )
 
 Index.getInitialProps = ({req, query}) => {
+  const sharing = !!(query && 'sharing' in query);
   if (query && query.ua) {
     return {
       ua: query.ua,
@@ -40,8 +50,11 @@ Index.getInitialProps = ({req, query}) => {
     }
   } else if (req && req.headers['user-agent']) {
     return {
-      ua: req.headers['user-agent'],
-      source: 'Your User-Agent is:'
+      uaOpts: {
+        ua: req.headers['user-agent'],
+        source: 'Your User-Agent is:',
+        detail: sharing ? 'You are sharing your user-agent' : null
+      }
     }
   }
   return {
