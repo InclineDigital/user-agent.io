@@ -1,7 +1,9 @@
 import Head from 'next/head'
+import Link from 'next/link'
+
 
 const Layout = ({
-  title="What's My User Agent?",
+  title="🖥 ️📱 💻 📟 What's My User Agent?",
   children
 }) => (
   <div>

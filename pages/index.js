@@ -1,21 +1,12 @@
 import Layout from '../components/Layout.js'
 import BannerAdd from '../components/BannerAdd'
-import Link from 'next/link'
+import UA from '../components/UA'
 
-const Index = ({ua}) => (
+const Index = ({ua, source}) => (
   <Layout>
-
     <main>
 
-      <section className="jumbotron">
-        <div className="container">
-          <h1>
-            <Link as={`/ua/${ua}`} href={`/?ua=${ua}`}>
-              <a>{ua}</a>
-            </Link>
-          </h1>
-        </div>
-      </section>
+     <UA source={source} ua={ua} />
 
       <section className="container">
         <BannerAdd/>
@@ -42,8 +33,19 @@ const Index = ({ua}) => (
 )
 
 Index.getInitialProps = ({req, query}) => {
+  if (query && query.ua) {
+    return {
+      ua: query.ua,
+      source: 'Viewing:'
+    }
+  } else if (req && req.headers['user-agent']) {
+    return {
+      ua: req.headers['user-agent'],
+      source: 'Your User-Agent is:'
+    }
+  }
   return {
-    ua:  (query && query.ua) || (req && req.headers['user-agent']) || '?'
+    ua: '?'
   }
 }
 
