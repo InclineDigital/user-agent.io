@@ -6,12 +6,14 @@ import UA from '../components/UA'
 
 class Host extends React.Component {
 
-  getInitialState() {
-    return {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
       ua: "Awaiting remote user...",
       detail: "See below for your link to give out."
     };
-  }
+  };
 
   componentDidMount() {
     let guid = this.props.guid;
