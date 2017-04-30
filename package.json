@@ -11,6 +11,7 @@
     "next": "^2.3.0-alpha1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-google-ad": "^1.0.2",
     "ua-parser-js": "^0.7.12",
     "vcap_services": "^0.3.4"
   },
