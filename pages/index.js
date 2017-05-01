@@ -1,10 +1,15 @@
 import Link from 'next/link'
+import Head from 'next/head'
+
 import Layout from '../components/Layout.js'
 import BannerAdd from '../components/BannerAdd'
 import UA from '../components/UA'
 
 const Index = ({uaOpts}) => (
   <Layout>
+    <Head>
+      <link rel="canonical" href="http://www.user-agent.io/" />
+    </Head>
     <main>
 
      <UA {...uaOpts} />
