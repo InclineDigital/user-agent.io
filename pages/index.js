@@ -46,25 +46,36 @@ const Index = ({uaOpts}) => (
   </Layout>
 )
 
-Index.getInitialProps = ({req, query}) => {
+const getUaOpts = ({req, query}) => {
   const sharing = !!(query && 'sharing' in query);
   if (query && query.ua) {
     return {
-      ua: query.ua,
-      source: 'Viewing:'
+        ua: query.ua,
+        source: 'Viewing:'
     }
-  } else if (req && req.headers['user-agent']) {
+  } else if (req) {
     return {
-      uaOpts: {
-        ua: req.headers['user-agent'],
+        ua: req.headers['user-agent'] || '(No User-Agent header provided)',
         source: 'Your User-Agent is:',
         detail: sharing ? 'You are sharing your user-agent' : null
-      }
+    }
+  } else if (typeof navigator !== 'undefined') {
+    return {
+      ua: navigator.userAgent || '(No navigator.userAgent provided)',
+      source: 'Your User-Agent is:',
+      detail: sharing ? 'You are sharing your user-agent' : null
     }
   }
   return {
-    ua: '?'
+      ua: '?'
   }
-}
+};
+
+Index.getInitialProps = (props) => {
+  const uaOpts = getUaOpts(props);
+  return {
+    uaOpts
+  }
+};
 
 export default Index

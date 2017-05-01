@@ -13,3 +13,5 @@
 
 * charge money
 
+* Ignore adsense bot UA when hosting
+

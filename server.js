@@ -45,20 +45,25 @@ app.prepare()
 
     server.get('/share-with/:guid', (req, res) => {
       const guid = req.params.guid;
-      const ua = req.headers['user-agent'];
-      const host = sessions[guid];
-      if (host && host.readyState === WebSocket.OPEN) {
-        console.log('sharing with ', guid, ua)
-        const ip = req.ip;
-        DNS.reverse(ip, (err, hostNames) => {
-          if (err) {
-            console.error(`Error retrieving reverse DNS for ${ip}: `, err);
-          }
-          const revDns = hostNames.length && hostNames[0] || null;
-          host.send(JSON.stringify({ua, ip, revDns}));
-        })
+      const ua = req.headers['user-agent'] || '(No User-Agent header was included on this request)';
+      const isAdsense = ua.includes('Mediapartners-Google');
+      if (isAdsense) {
+        console.log('skipping adsense bot on host page', ua)
       } else {
-        console.log('no session for shared guid', guid, sessions)
+        const host = sessions[guid];
+        if (host && host.readyState === WebSocket.OPEN) {
+          console.log('sharing with ', guid, ua)
+          const ip = req.ip;
+          DNS.reverse(ip, (err, hostNames) => {
+            if (err) {
+              console.error(`Error retrieving reverse DNS for ${ip}: `, err);
+            }
+            const revDns = hostNames.length && hostNames[0] || null;
+            host.send(JSON.stringify({ua, ip, revDns}));
+          })
+        } else {
+          console.log('no session for shared guid', guid, sessions)
+        }
       }
       const actualPage = '/';
       const queryParams = { guid, sharing: true };
