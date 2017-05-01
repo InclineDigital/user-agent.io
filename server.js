@@ -1,6 +1,7 @@
 const express = require('express')
 const next = require('next')
 const expressWS = require('express-ws');
+const WebSocket = require('ws');
 
 const dev = process.env.NODE_ENV !== 'production'
 const port = process.env.PORT || 3000;
@@ -25,7 +26,6 @@ app.prepare()
       console.log('host connected', guid);
       sessions[guid] = ws;
 
-
       ws.on('message', function(msg) {
         console.log('ws message from host', msg);
       });
@@ -41,10 +41,11 @@ app.prepare()
     server.get('/share-with/:guid', (req, res) => {
       const guid = req.params.guid;
       const ua = req.headers['user-agent'];
-      if (sessions[guid]) {
+      const host = sessions[guid];
+      if (host && host.readyState === WebSocket.OPEN) {
         console.log('sharing with ', guid, ua)
         // todo: include ip and rev dns
-        sessions[guid].send(JSON.stringify({ua}));
+        host.send(JSON.stringify({ua}));
       } else {
         console.log('no session for shared guid', guid, sessions)
       }
