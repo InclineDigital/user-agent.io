@@ -1,3 +1,5 @@
+const DNS = require('dns');
+
 const express = require('express')
 const next = require('next')
 const expressWS = require('express-ws');
@@ -11,6 +13,9 @@ const handle = app.getRequestHandler()
 app.prepare()
   .then(() => {
     const server = express();
+
+    // required to read client ip properly behind bluemix's reverse proxy
+    server.set('trust proxy', true);
 
     // set up the websocket handler
     expressWS(server);
@@ -44,8 +49,14 @@ app.prepare()
       const host = sessions[guid];
       if (host && host.readyState === WebSocket.OPEN) {
         console.log('sharing with ', guid, ua)
-        // todo: include ip and rev dns
-        host.send(JSON.stringify({ua}));
+        const ip = req.ip;
+        DNS.reverse(ip, (err, hostNames) => {
+          if (err) {
+            console.error(`Error retrieving reverse DNS for ${ip}: `, err);
+          }
+          const revDns = hostNames.length && hostNames[0] || null;
+          host.send(JSON.stringify({ua, ip, revDns}));
+        })
       } else {
         console.log('no session for shared guid', guid, sessions)
       }

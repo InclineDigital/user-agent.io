@@ -13,8 +13,7 @@ class Host extends React.Component {
 
     this.retry_delay = 10;
     this.state = {
-      ua: "Awaiting remote user...",
-      link: false,
+      ua: null,
     };
   };
 
@@ -39,11 +38,12 @@ class Host extends React.Component {
     };
     socket.onmessage = (msg) => {
       console.log('websocket message', msg);
-      const { ua } = JSON.parse(msg.data);
+      const { ua, ip, revDns } = JSON.parse(msg.data);
       this.setState({
         ua,
+        ip,
+        revDns,
         time: new Date,
-        link: true,
       })
     }
   }
@@ -64,13 +64,16 @@ class Host extends React.Component {
 
   render() {
     const source = "Remote User Agent:";
-    const {ua, time, link} = this.state;
+    const {ua, time, ip, revDns} = this.state;
     const url = this.clientLink;
     return (
     <Layout>
       <main>
 
-        <UA source={source} ua={ua} detail={time ? <TimeAgo date={time} /> : 'See below for your link to give out.'} link={link} />
+        {ua ?
+         <UA source={source} ua={ua} detail={<span>{revDns} {ip} (<TimeAgo date={time} />)</span>} />
+          :  <UA source={source} ua='Awaiting remote user...' detail='See below for your link to give out.' link={false} />
+        }
 
         <section className="container">
           <BannerAdd/>
