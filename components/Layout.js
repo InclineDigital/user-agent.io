@@ -42,10 +42,10 @@ const Layout = ({
               <ul className="navbar-nav mr-auto mt-2 mt-md-0">
                 { /* todo: set active on the current nav-item and add <span className="sr-only">(current)</span> to the link*/ }
                 <li className="nav-item">
-                  <a className="nav-link" href="/">My UA</a>
+                  <Link href="/"><a className="nav-link">My UA</a></Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/host">Their UA</a>
+                  <Link href="/host"><a className="nav-link">Their UA</a></Link>
                 </li>
                 {/*
                  <li className="nav-item">
