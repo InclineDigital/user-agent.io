@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 import Layout from '../components/Layout.js'
-import BannerAdd from '../components/BannerAdd'
+import BannerAd from '../components/BannerAd'
 import UA from '../components/UA'
 
 const Index = ({uaOpts}) => (
@@ -15,7 +15,7 @@ const Index = ({uaOpts}) => (
      <UA {...uaOpts} />
 
       <section className="container">
-        <BannerAdd/>
+        <BannerAd/>
 
         <h2 style={{marginBottom: '30px'}}>
           <Link>

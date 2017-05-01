@@ -2,7 +2,7 @@ import React from 'react';
 import Guid from 'guid';
 import TimeAgo from 'react-timeago'
 import Layout from '../components/Layout.js'
-import BannerAdd from '../components/BannerAdd'
+import BannerAdd from '../components/BannerAd'
 import UA from '../components/UA'
 
 
