@@ -15,15 +15,13 @@ const Layout = ({
     </Head>
     <style jsx>
       {`
-      nav .container {
-        display: flex;
-      }
       footer {
        margin-top: 2rem;
       }
       footer .container {
         border-top: 1px solid #ccc;
-        padding: 2rem 0;
+        padding--top: 2rem;
+        padding-bottom: 2rem;
       }
       footer p:last-child {
         margin-bottom: 0;
@@ -32,22 +30,22 @@ const Layout = ({
         </style>
 
         <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
-          <div className="container">
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
+
             <a className="navbar-brand" href="/">What's My User Agent?</a>
 
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav mr-auto mt-2 mt-md-0">
                 { /* todo: set active on the current nav-item and add <span className="sr-only">(current)</span> to the link*/ }
                 <li className="nav-item">
-                  <a className="nav-link" href="/">Your UA</a>
+                  <a className="nav-link" href="/">My UA</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/host">Remote UA</a>
+                  <a className="nav-link" href="/host">Their UA</a>
                 </li>
                 {/*
                  <li className="nav-item">
@@ -66,7 +64,6 @@ const Layout = ({
               </Link>
               */}
             </div>
-          </div>
         </nav>
 
 
