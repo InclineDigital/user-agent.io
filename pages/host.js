@@ -4,7 +4,7 @@ import TimeAgo from 'react-timeago'
 import Layout from '../components/Layout.js'
 import BannerAdd from '../components/BannerAd'
 import UA from '../components/UA'
-
+import { trackEvent, trackException } from '../lib/analytics'
 
 class Host extends React.Component {
 
@@ -18,33 +18,39 @@ class Host extends React.Component {
   };
 
   openSocket() {
-    console.log('opening socket');
     let guid = this.props.guid;
     let socket = this.socket = new WebSocket(`${location.protocol.replace('http', 'ws')}//${location.host}/host/${guid}`);
     socket.onopen = () => {
-      console.log('socket open, sending guid', guid);
       this.retry_delay = 10;
-      socket.send(JSON.stringify({guid}));
+      socket.send(JSON.stringify({guid})); // this isn't needed anymore, but meh
     };
-    socket.onclose = (code) => {
+    socket.onclose = ({code, reason, wasClean}) => {
       // exponential backoff starting at 100 ms
       this.retry_delay = this.retry_delay * this.retry_delay;
-      console.log('socket closed with ' + code + ', reconnecting in ' + this.retry_delay + ' ms');
+      console.log(`WebSocket connection closed with ${code} ${reason}; clean: ${wasClean}; reconnecting in ${this.retry_delay} ms`);
       setTimeout(this.openSocket, this.retry_delay);
+      trackException(`WebSocket connection closed with ${code} ${reason}`, wasClean);
     };
     socket.onerror = (err) => {
-      console.log('socket error', err);
-      this.setState({ua: 'Error in WebSocket connection'});
+      console.log('WebSocket error', err);
+      this.setState({
+        ua: 'Error in WebSocket connection',
+        time: new Date,
+        ip: null,
+        revDns: null
+      });
+      trackException('WebSocket connection error')
     };
     socket.onmessage = (msg) => {
-      console.log('websocket message', msg);
+      console.log('WebSocket message', msg);
       const { ua, ip, revDns } = JSON.parse(msg.data);
       this.setState({
         ua,
         ip,
         revDns,
         time: new Date,
-      })
+      });
+      trackEvent('host', 'client visited', ua)
     }
   }
 
@@ -53,13 +59,21 @@ class Host extends React.Component {
   }
 
   componentWillUnmount() {
-    this.socket && this.socket.close();
+    if (this.socket) {
+      this.socket.onclose = null; // don't automatically reconnect
+      this.socket.close();
+    }
   }
 
   get clientLink() {
     const guid = this.props.guid;
     const base = (typeof location !== 'undefined') ? `${location.protocol}//${location.host}` : 'http://user-agent.io';
     return `${base}/share-with/${guid}`;
+  }
+
+  onLinkTextClick(e) {
+    e.target.select();
+    trackEvent('host', 'link selected')
   }
 
   render() {
@@ -81,7 +95,7 @@ class Host extends React.Component {
           <div className="form-group row">
             <label htmlFor="link" className="col-sm-4 col-form-label">Have someone click this link: </label>
             <div className="col-sm-8">
-              <input className="form-control" value={url} readOnly onClick={(e)=>e.target.select()} id="link" />
+              <input className="form-control" value={url} readOnly onClick={this.onLinkTextClick} id="link" />
             </div>
           </div>
 

@@ -13,5 +13,5 @@
 
 * charge money
 
-* Ignore adsense bot UA when hosting
+* look into https://github.com/googleanalytics/autotrack#loading-autotrack-via-npm
 
