@@ -70,7 +70,7 @@ class Host extends React.Component {
     <Layout>
       <main>
 
-        <UA source={source} ua={ua} detail={time ? <TimeAgo date={time} minPeriod={60} /> : 'See below for your link to give out.'} link={link} />
+        <UA source={source} ua={ua} detail={time ? <TimeAgo date={time} /> : 'See below for your link to give out.'} link={link} />
 
         <section className="container">
           <BannerAdd/>

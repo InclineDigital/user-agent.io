@@ -1,4 +1,4 @@
 ---
 name: user-agent
 buildpack: sdk-for-nodejs
-
+command: npm start

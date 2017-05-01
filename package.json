@@ -19,12 +19,17 @@
     "ws": "^2.3.1"
   },
   "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "foreman": "^2.0.0",
+    "node-sass": "^4.5.2",
     "nodemon": "^1.11.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
-    "build": "next build",
+    "dev": "nf start",
+    "build": "next build && npm run sass-build",
+    "sass-build": "node-sass static/style.scss --output-style compressed --include-path node_modules/bootstrap/scss/ static/style.css",
+    "sass-dev": "node-sass static/style.scss --output-style expanded --watch --error-bell static/style.css",
     "deploy": "npm run build && bluemix app push user-agent",
     "start": "NODE_ENV=production node server.js"
   },
