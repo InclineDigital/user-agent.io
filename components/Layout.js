@@ -31,7 +31,7 @@ class Layout extends Component {
       }
       footer .container {
         border-top: 1px solid #ccc;
-        padding--top: 2rem;
+        padding-top: 2rem;
         padding-bottom: 2rem;
       }
       footer p:last-child {
