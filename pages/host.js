@@ -2,7 +2,7 @@ import React from 'react';
 import Guid from 'guid';
 import TimeAgo from 'react-timeago'
 import Layout from '../components/Layout.js'
-import BannerAdd from '../components/BannerAd'
+import { BannerAd } from '../components/BannerAd'
 import UA from '../components/UA'
 import { trackEvent, trackException } from '../lib/analytics'
 
@@ -90,7 +90,6 @@ class Host extends React.Component {
         }
 
         <section className="container">
-          <BannerAdd/>
 
           <div className="form-group row">
             <label htmlFor="link" className="col-sm-4 col-form-label">Have someone click this link: </label>
@@ -99,7 +98,7 @@ class Host extends React.Component {
             </div>
           </div>
 
-          <BannerAdd/>
+          <BannerAd/>
 
         </section>
       </main>

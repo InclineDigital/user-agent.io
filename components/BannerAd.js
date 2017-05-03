@@ -1,7 +1,7 @@
 import GoogleAd from 'react-google-ad'
 
-const BannerAd = () => (
-  <div style={{textAlign: 'center'}}>
+export const BannerAd = () => (
+  <div className="text-center my-4">
     {/* format="xxx" */}
     <GoogleAd client='ca-pub-9477050254721722'
               slot='0871459249'
@@ -10,4 +10,3 @@ const BannerAd = () => (
   </div>
 )
 
-export default BannerAd;
