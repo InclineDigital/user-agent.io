@@ -2,7 +2,7 @@ import React from 'react';
 import Guid from 'guid';
 import TimeAgo from 'react-timeago'
 import Layout from '../components/Layout.js'
-import { BannerAd } from '../components/BannerAd'
+import { BannerAd } from '../components/Ads'
 import UA from '../components/UA'
 import { trackEvent, trackException } from '../lib/analytics'
 
