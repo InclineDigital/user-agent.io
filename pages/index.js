@@ -47,7 +47,7 @@ const Index = ({uaOpts}) => (
 )
 
 const getUaOpts = ({req, query}) => {
-  const sharing = !!(query && 'sharing' in query);
+  const sharing = !!(query && 'shared' in query);
   if (query && query.ua) {
     return {
         ua: query.ua,
@@ -57,13 +57,13 @@ const getUaOpts = ({req, query}) => {
     return {
         ua: req.headers['user-agent'] || '(No User-Agent header provided)',
         source: 'Your User-Agent is:',
-        detail: sharing ? 'You are sharing your user-agent' : null
+        detail: sharing ? 'Your user-agent was shared' : null
     }
   } else if (typeof navigator !== 'undefined') {
     return {
       ua: navigator.userAgent || '(No navigator.userAgent provided)',
       source: 'Your User-Agent is:',
-      detail: sharing ? 'You are sharing your user-agent' : null
+      detail: sharing ? 'Your user-agent was shared' : null
     }
   }
   return {

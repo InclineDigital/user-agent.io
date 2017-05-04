@@ -65,9 +65,7 @@ app.prepare()
           console.log('no session for shared guid', guid, sessions)
         }
       }
-      const actualPage = '/';
-      const queryParams = { guid, sharing: true };
-      app.render(req, res, actualPage, queryParams)
+      res.redirect('/?sharedg=true');
     });
 
     // request expects named params to not contain a slash
