@@ -1,3 +1,3 @@
-import { ResponsiveNamecheapAd } from '../components/Ads'
+import { ResponsiveNamecheapAd } from '../components/Ads';
 
 export default ResponsiveNamecheapAd;
