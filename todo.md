@@ -8,6 +8,7 @@
   * disable my hosts add blocker to see what the ads look like
   * get a color scheme
 
+* get https working
 
 * build out account features to remember previous UAs
   * allow account creation

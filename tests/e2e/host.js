@@ -1,13 +1,16 @@
 module.exports = {
   start: browser => {
-    browser.url('http://localhost:3000');
+    browser.url('http://localhost:3000/host');
     browser.waitForElementVisible('div[data-reactroot]', 1000);
   },
 
   'host page loads': browser => {
-    browser.click('a[href="/host"]');
-    console.log(browser.title());
-    console.log(browser.source());
+    browser.title(function(title) {
+      console.log('title: ', title);
+    });
+    browser.source(function() {
+      console.log(arguments);
+    });
     browser.waitForElementVisible('input[readonly]', 1000);
     browser.assert.containsText('.jumbotron', 'Awaiting remote user...');
   },
