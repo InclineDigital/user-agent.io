@@ -8,9 +8,6 @@
   * disable my hosts add blocker to see what the ads look like
   * get a color scheme
 
-* tests, linting
-
-* ci & cd
 
 * build out account features to remember previous UAs
   * allow account creation

@@ -1,5 +1,5 @@
 import React from 'react';
-import Guid from 'guid';
+import uuidV4 from 'uuid/v4';
 import Link from 'next/link';
 import TimeAgo from 'react-timeago';
 import Layout from '../components/Layout.js';
@@ -81,7 +81,7 @@ class Host extends React.Component {
     const { ua, time, ip, revDns } = this.state;
     const url = this.clientLink;
     return (
-      <Layout>
+      <Layout title="Find out what browser someone else is using - 🖥 📱 💻 📟">
         <main>
 
           {ua
@@ -98,6 +98,9 @@ class Host extends React.Component {
             </div>
 
             <BannerAd />
+
+            <h3>🖥 The best way to find out what browser someone else is using</h3>
+            <p>Just have them click your link and you'll instantly see their browser details - it's better than standing over their shoulder!</p>
 
             <h3>🎩 Magic!</h3>
 
@@ -120,7 +123,7 @@ class Host extends React.Component {
 }
 
 Host.getInitialProps = () => ({
-  guid: Guid.raw()
+  guid: uuidV4()
 });
 
 export default Host;
