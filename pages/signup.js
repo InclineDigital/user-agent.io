@@ -1,4 +1,4 @@
-import Layout from '../components/Layout.js';
+import Layout from '../src/components/Layout.js';
 
 export default function Signup() {
   return (

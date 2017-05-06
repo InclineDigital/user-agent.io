@@ -45,7 +45,7 @@
     "sass-build": "node-sass static/style.scss --output-style compressed --include-path node_modules/bootstrap/scss/ static/style.css",
     "sass-dev": "node-sass static/style.scss --output-style expanded --watch --error-bell static/style.css",
     "deploy": "npm run build && cf zero-downtime-push user-agent -f manifest.yml",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node src/server.js"
   },
   "engines": {
     "node": "7"

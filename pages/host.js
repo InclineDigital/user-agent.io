@@ -2,10 +2,10 @@ import React from 'react';
 import uuidV4 from 'uuid/v4';
 import Link from 'next/link';
 import TimeAgo from 'react-timeago';
-import Layout from '../components/Layout.js';
-import { BannerAd } from '../components/Ads';
-import UA from '../components/UA';
-import { trackEvent, trackException } from '../lib/analytics';
+import Layout from '../src/components/Layout.js';
+import { BannerAd } from '../src/components/Ads';
+import UA from '../src/components/UA';
+import { trackEvent, trackException } from '../src/analytics';
 
 class Host extends React.Component {
   constructor(props, context) {

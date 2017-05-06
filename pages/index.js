@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Head from 'next/head';
 
-import Layout from '../components/Layout.js';
-import { BannerAd } from '../components/Ads';
-import UA from '../components/UA';
+import Layout from '../src/components/Layout.js';
+import { BannerAd } from '../src/components/Ads';
+import UA from '../src/components/UA';
 
 const Index = ({ uaOpts }) => (
   <Layout>

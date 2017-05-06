@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Component } from 'react';
 
-import { initAnalytics, trackPageview } from '../lib/analytics';
+import { initAnalytics, trackPageview } from '../analytics';
 
 class Layout extends Component {
   componentDidMount() {
