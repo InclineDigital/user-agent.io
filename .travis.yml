@@ -17,16 +17,25 @@ env:
   global:
   - CF_APP=user-agent
   - CF_API=https://api.ng.bluemix.net
+  - CF_USERNAME=nfriedly@us.ibm.com
   - CF_ORGANIZATION=nfriedly@us.ibm.com
   - CF_SPACE=dev
-  # CF_PASSWORD entered into travis ci's UI as a private env var.
-  # It could alternatively be stored here encrypted.
-before_deploy: npm install -g https://github.com/germanattanasio/cf-blue-green
+  # travis encrypt "CF_PASSWORD=your password"
+  - secure: "cV6KNu+Fmgy7TfQ8iEKF7+eNxG/QyhtTmzvU8rya6rLgBh/9dDZyMu4QlT3tD2Z+GMKI6LNHE3OI4MUroP+cmYfMbJjWsxueCGrYWe0mhAWSs8dzOo4gFr1LODllKBstgNNn1WkH2/6cpMG6I/FzGHYCtNmOOBlWJhRPpGaVPF0="
+before_deploy:
+# ...first add the Cloud Foundry Foundation public key and package repository to your system
+- wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+- echo "deb http://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+# ...then, update your local package index, then finally install the cf CLI
+- sudo apt-get update
+- sudo apt-get install cf-cli
+- cf -v
+- cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORGANIZATION -s $CF_SPACE
+- cf install-plugin autopilot -f -r CF-Community
 deploy:
-  skip_cleanup: true
   provider: script
-  script:
-  - cf-blue-green-travis
+  skip_cleanup: true
+  script: cf zero-downtime-push $CF_APP -f manifest.yml
   on:
     branch: master
     repo: nfriedly/user-agent.io

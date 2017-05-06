@@ -4,3 +4,8 @@ buildpack: sdk-for-nodejs
 command: npm start
 env:
  NODE_ENV: production
+domain: user-agent.io
+host: ""
+hosts:
+- www
+memory: 512M

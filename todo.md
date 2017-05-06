@@ -5,7 +5,6 @@
 
 * improve design
   * highlight the url on the host page
-  * disable my hosts add blocker to see what the ads look like
   * get a color scheme
 
 * get https working
@@ -17,11 +16,10 @@
   * allow logging in
   * remember logged-in status in a cookie (optional, but desired)
   * allow url customization
-  * differentiate between anon and custom URLs
-    * perhaps just isGuid()? 
-    * or an extra prefix on anon's
-    * or allow no prefix on customs - check performance impact, consider preloading list into mem
-  * on custom hit, store in db
+  * identify custom URLs
+    * different prefix vs anon's
+    * no prefix - check performance impact, consider preloading list into mem
+  * on custom hit, store in db (probably as a new doc)
 
 * charge money
 
