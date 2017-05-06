@@ -25,3 +25,4 @@
 
 * look into https://github.com/googleanalytics/autotrack#loading-autotrack-via-npm
 
+* figure out how to make antifreeze work

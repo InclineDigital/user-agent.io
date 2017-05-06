@@ -4,6 +4,10 @@ const express = require('express');
 const next = require('next');
 const expressWS = require('express-ws');
 const WebSocket = require('ws');
+const session = require('cookie-session');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3000;
@@ -18,10 +22,49 @@ app
     // required to read client ip properly behind bluemix's reverse proxy
     server.set('trust proxy', true);
 
+    // setup auth
+    server.use(bodyParser.urlencoded({ extended: false }));
+    server.use(
+      session({
+        name: 'session',
+        keys: ['todo: pull this from env'],
+        maxAge: 365 * 24 * 60 * 60 * 1000
+      })
+    );
+    server.use(passport.initialize());
+    server.use(passport.session());
+
+    passport.serializeUser(function(user, done) {
+      done(null, JSON.stringify(user));
+    });
+
+    passport.deserializeUser(function(userStr, done) {
+      done(null, JSON.parse(userStr));
+    });
+
+    passport.use(
+      new LocalStrategy(function(username, password, done) {
+        console.log('checking ', username, password);
+        if (username === 'nathan@nfriedly.com' && password === 'foobar') {
+          return done(null, { email: username });
+        } else {
+          return done(null, false, { message: 'Incorrect username or password.' });
+        }
+      })
+    );
+
+    server.post(
+      '/login',
+      passport.authenticate('local', {
+        successRedirect: '/host',
+        failureRedirect: '/login'
+      })
+    );
+
     // set up the websocket handler
     expressWS(server);
 
-    // this belongs in a db/redis/memcached/whatever
+    // todo: this belongs in a db/redis/memcached/whatever
     // right now it limits us to a single server/process, leaks memory, and looses everything at each restart
     const sessions = {};
 
