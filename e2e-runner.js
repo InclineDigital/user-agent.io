@@ -15,7 +15,5 @@ test.on('error', handleErr);
 
 test.on('exit', code => {
   app.kill();
-  app.on('exit', () => {
-    process.exit(code);
-  });
+  process.exit(code);
 });
