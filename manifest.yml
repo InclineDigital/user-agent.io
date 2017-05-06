@@ -2,3 +2,5 @@
 name: user-agent
 buildpack: sdk-for-nodejs
 command: npm start
+env:
+ NODE_ENV: production
