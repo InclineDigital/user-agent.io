@@ -1,5 +1,6 @@
 import React from 'react';
 import Guid from 'guid';
+import Link from 'next/link';
 import TimeAgo from 'react-timeago';
 import Layout from '../components/Layout.js';
 import { BannerAd } from '../components/Ads';
@@ -98,14 +99,18 @@ class Host extends React.Component {
 
             <BannerAd />
 
-            <h3>It's Magic!</h3>
+            <h3>🎩 Magic!</h3>
 
-            <p>It's not actually magic - the way this works is that when you visit this page, a unique ID is generated.
-              After this page loads, it makes <a href="https://tools.ietf.org/html/rfc6455">WebSocket</a> connection to the user-agent.io server.
+            <p>
+              It's not actually magic - the way this works is that when you visit this page, a unique ID is generated.
+              After this page loads, it makes <a href="https://tools.ietf.org/html/rfc6455">WebSocket</a> connection to
+              the <Link href="/"><a>user-agent.io</a></Link> server.
               That connection stays open until you close the page, and the server marks it as associated with your unique ID.
             </p>
-            <p>Then, when a user clicks on your link, the server matches the ID in the link to your WebSocket connection.
-            It reads the visitor's User-Agent header and sends it to your browser over the WebSocket.</p>
+            <p>
+              Then, when a user clicks on your link, the server matches the ID in the link to your WebSocket connection.
+              It reads the visitor's User-Agent header and sends it to your browser over the WebSocket.
+            </p>
 
           </section>
         </main>
