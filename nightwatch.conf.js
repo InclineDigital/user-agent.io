@@ -25,7 +25,7 @@ module.exports = {
       launch_url: 'http://localhost:3000',
       selenium_port: 4444,
       selenium_host: 'localhost',
-      silent: false,
+      silent: true,
       screenshots: {
         enabled: false,
         path: ''

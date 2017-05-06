@@ -65,7 +65,7 @@ app
           console.log('no session for shared guid', guid, sessions);
         }
       }
-      res.redirect('/?sharedg=true');
+      res.redirect('/?shared=true');
     });
 
     // request expects named params to not contain a slash

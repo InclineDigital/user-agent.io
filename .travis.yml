@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: required
 language: node_js
 node_js:
 - 7
@@ -9,3 +9,22 @@ before_script:
     - jdk_switcher use oraclejdk8
 addons:
   firefox: "52.0"
+
+cache:
+  directories:
+  - node_modules
+env:
+  global:
+  - CF_APP=user-agent
+  - CF_API=https://api.ng.bluemix.net
+  - CF_ORGANIZATION=nfriedly@us.ibm.com
+  - CF_SPACE=dev
+before_deploy: npm install -g https://github.com/germanattanasio/cf-blue-green
+deploy:
+  skip_cleanup: true
+  provider: script
+  script:
+  - cf-blue-green-travis
+  on:
+    branch: master
+    repo: nfriedly/user-agent.io

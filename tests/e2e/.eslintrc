@@ -1,0 +1,12 @@
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": false,
+      "jsx": false
+    },
+    "sourceType": "script"
+  },
+  "rules": {
+    "prefer-rest-params": "off",
+  }
+}

@@ -1,6 +1,7 @@
 module.exports = {
   beforeEach: browser => {
-    browser.url('http://localhost:3000').waitForElementVisible('div[data-reactroot]', 1000);
+    browser.url('http://localhost:3000');
+    browser.waitForElementVisible('div[data-reactroot]', 1000);
   },
 
   // 'Demo test Google' : function (browser) {
@@ -15,8 +16,16 @@ module.exports = {
   //     .end();
   // },
 
-  'Smoke test': browser => {
-    browser.assert.title("What's My User Agent? 🖥 📱 💻 📟").assert.visible('nav', 'nav rendered').assert.visible('main', 'main rendered');
+  'page loads': browser => {
+    browser.assert.title("What's My User Agent? 🖥 📱 💻 📟");
+    browser.assert.visible('nav');
+    browser.assert.visible('main');
+  },
+
+  'page contains UA component': browser => {
+    browser.assert.visible('.jumbotron');
+    // todo: figure out how to fake the UA
+    browser.assert.containsText('.jumbotron', 'Mozilla');
   },
 
   after: browser => browser.end()

@@ -4,3 +4,4 @@ build/
 *.log
 static/style.css
 tests/reports
+.eslintcache
