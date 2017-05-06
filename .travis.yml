@@ -4,3 +4,5 @@ node_js:
 before_script:
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
+addons:
+  firefox: "52.0"
