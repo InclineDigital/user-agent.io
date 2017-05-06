@@ -5,12 +5,12 @@ module.exports = {
   },
 
   'host page loads': browser => {
-    browser.title(function(title) {
-      console.log('title: ', title);
-    });
-    browser.source(function() {
-      console.log(arguments);
-    });
+    // browser.title(function(title) {
+    //   console.log('title: ', title);
+    // });
+    // browser.source(function() {
+    //   console.log(arguments);
+    // });
     browser.waitForElementVisible('input[readonly]', 1000);
     browser.assert.containsText('.jumbotron', 'Awaiting remote user...');
   },

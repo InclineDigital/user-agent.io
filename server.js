@@ -58,7 +58,7 @@ app
             if (err) {
               console.error(`Error retrieving reverse DNS for ${ip}: `, err);
             }
-            const revDns = (hostNames.length && hostNames[0]) || null;
+            const revDns = (hostNames && hostNames.length && hostNames[0]) || null;
             host.send(JSON.stringify({ ua, ip, revDns }));
           });
         } else {
