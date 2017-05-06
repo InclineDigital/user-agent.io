@@ -16,6 +16,7 @@
     "react-google-ad": "^1.0.2",
     "react-timeago": "^3.3.0",
     "ua-parser-js": "^0.7.12",
+    "uuid": "^3.0.1",
     "vcap_services": "^0.3.4",
     "ws": "^2.3.1"
   },
