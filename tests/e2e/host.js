@@ -6,6 +6,8 @@ module.exports = {
 
   'host page loads': browser => {
     browser.click('a[href="/host"]');
+    console.log(browser.title());
+    console.log(browser.source());
     browser.waitForElementVisible('input[readonly]', 1000);
     browser.assert.containsText('.jumbotron', 'Awaiting remote user...');
   },
