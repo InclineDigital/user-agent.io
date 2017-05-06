@@ -4,38 +4,6 @@
   "description": "Reports your browser's User-Agent string and, with a special link, that of other browsers",
   "main": "src/server.js",
   "private": true,
-  "dependencies": {
-    "dotenv": "^4.0.0",
-    "express": "^4.15.2",
-    "express-ws": "^3.0.0",
-    "lodash": "^4.17.4",
-    "nano": "^6.2.0",
-    "next": "^2.3.0-alpha1",
-    "random-in-range": "^1.0.3",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-google-ad": "^1.0.2",
-    "react-timeago": "^3.3.0",
-    "ua-parser-js": "^0.7.12",
-    "uuid": "^3.0.1",
-    "vcap_services": "^0.3.4",
-    "ws": "^2.3.1"
-  },
-  "devDependencies": {
-    "bootstrap": "^4.0.0-alpha.6",
-    "eslint": "^3.19.0",
-    "eslint-config-google": "^0.7.1",
-    "eslint-config-prettier": "^1.7.0",
-    "eslint-plugin-prettier": "^2.0.1",
-    "eslint-plugin-react": "^6.10.3",
-    "foreman": "^2.0.0",
-    "geckodriver": "^1.6.1",
-    "nightwatch": "^0.9.15",
-    "node-sass": "^4.5.2",
-    "nodemon": "^1.11.0",
-    "prettier": "^1.3.1",
-    "selenium-server-standalone-jar": "^3.4.0"
-  },
   "scripts": {
     "test": "npm run lint && npm run test-e2e",
     "lint": "eslint . --cache",
@@ -60,9 +28,41 @@
   "bugs": {
     "url": "https://github.com/nfriedly/user-agent.io/issues"
   },
-  "homepage": "https://github.com/nfriedly/user-agent.io#readme",
+  "homepage": "https://user-agent.io/",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-ws": "^3.0.0",
+    "lodash": "^4.17.4",
+    "nano": "^6.2.0",
+    "next": "^2.3.0-alpha1",
+    "random-in-range": "^1.0.3",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-google-ad": "^1.0.2",
+    "react-timeago": "^3.3.0",
+    "ua-parser-js": "^0.7.12",
+    "uuid": "^3.0.1",
+    "vcap_services": "^0.3.4",
+    "ws": "^2.3.1"
+  },
   "optionalDependencies": {
     "bufferutil": "^3.0.0",
     "utf-8-validate": "^3.0.1"
+  },
+  "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-config-prettier": "^1.7.0",
+    "eslint-plugin-prettier": "^2.0.1",
+    "eslint-plugin-react": "^6.10.3",
+    "foreman": "^2.0.0",
+    "geckodriver": "^1.6.1",
+    "nightwatch": "^0.9.15",
+    "node-sass": "^4.5.2",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.3.1",
+    "selenium-server-standalone-jar": "^3.4.0"
   }
 }
