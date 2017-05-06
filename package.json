@@ -28,13 +28,17 @@
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.3",
     "foreman": "^2.0.0",
+    "geckodriver": "^1.6.1",
+    "nightwatch": "^0.9.15",
     "node-sass": "^4.5.2",
     "nodemon": "^1.11.0",
-    "prettier": "^1.3.1"
+    "prettier": "^1.3.1",
+    "selenium-server-standalone-jar": "^3.4.0"
   },
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint && npm run test-e2e",
     "lint": "eslint .",
+    "test-e2e": "node e2e-runner.js",
     "autofix": "eslint . --fix",
     "dev": "nf start",
     "build": "next build && npm run sass-build",
