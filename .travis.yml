@@ -1,5 +1,5 @@
 dist: trusty
-sudo: falsegit
+sudo: false
 language: node_js
 node_js:
 - 7
@@ -7,5 +7,6 @@ before_script:
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
     - jdk_switcher use oraclejdk8
+    - npm run build
 addons:
   firefox: "52.0"
