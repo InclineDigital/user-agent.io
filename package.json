@@ -38,7 +38,7 @@
   "scripts": {
     "test": "npm run lint && npm run test-e2e",
     "lint": "eslint .",
-    "test-e2e": "node e2e-runner.js",
+    "test-e2e": "npm run build; node e2e-runner.js",
     "autofix": "eslint . --fix",
     "dev": "nf start",
     "build": "next build && npm run sass-build",
