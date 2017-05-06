@@ -56,7 +56,7 @@
     "url": "git+https://github.com/nfriedly/user-agent.io.git"
   },
   "author": "Nathan Friedly (http://www.nfriedly.com/)",
-  "license": "MIT",
+  "license": "AGPL",
   "bugs": {
     "url": "https://github.com/nfriedly/user-agent.io/issues"
   },
