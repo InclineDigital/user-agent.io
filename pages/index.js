@@ -46,7 +46,9 @@ const Index = ({ uaOpts }) => (
               <li>Visit <code>user-agent.io/ua/[any-user-agent-string]</code>, the site will give you a breakdown for that string.</li>
               <li>
                 If something is missing or wrong, or you have any other ideas for improving the site,
-                please <a href="https://github.com/nfriedly/user-agent.io">send an issue or pull request on Github <i className="fa fa-github" /></a>.
+                please <a href="https://github.com/nfriedly/user-agent.io">
+                  send an issue or pull request on Github
+                </a>.
               </li>
             </ul>
           </div>
