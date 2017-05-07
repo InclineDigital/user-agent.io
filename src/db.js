@@ -24,7 +24,7 @@ const ERROR_USER_NOT_FOUND = 'user not found';
 const getUser = email =>
   new Promise((resolve, reject) => {
     if (!email) {
-      reject('email is required');
+      reject(new Error('Email is required'));
     }
     return db.view('users', 'byEmail', { key: email }, (err, body) => {
       if (err) {
@@ -33,20 +33,13 @@ const getUser = email =>
         if (body.rows.length) {
           resolve(body.rows[0]);
         } else {
-          reject('user not found');
+          resolve(null);
         }
       }
     });
-  });
+  }).then(record => record.value); // extract the doc
 
-const userExists = email =>
-  getUser(email).then(user => true).catch(e => {
-    if (e === ERROR_USER_NOT_FOUND) {
-      return false;
-    } else {
-      throw e;
-    }
-  });
+const userExists = email => getUser(email).then(user => !!user);
 
 const ERROR_EMAIL_ALREADY_REGISTERED = 'that email address is already registered to an existing user';
 

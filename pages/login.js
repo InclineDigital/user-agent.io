@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Layout from '../src/components/Layout.js';
 
-const Login = ({ uaOpts }) => (
+const Login = props => (
   <Layout title="Log In">
-    <main>
+    <main className="my-4">
       <section className="container">
-
         <form action="/login" method="POST">
+          {'incorrect' in props.url.query ? <div className="alert alert-danger" role="alert">Incorrect username or password</div> : null}
           <h2>Log In</h2>
           <fieldset className="form-group">
             <div className="form-group row">

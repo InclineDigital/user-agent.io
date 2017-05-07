@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+const db = require('./db');
+
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3000;
 const app = next({ dev });
@@ -44,12 +46,20 @@ app
 
     passport.use(
       new LocalStrategy(function(username, password, done) {
-        console.log('checking ', username, password);
-        if (username === 'nathan@nfriedly.com' && password === 'foobar') {
-          return done(null, { email: username });
-        } else {
-          return done(null, false, { message: 'Incorrect username or password.' });
-        }
+        db
+          .getUser(username)
+          .then(user => {
+            console.log('get user resolved', user);
+            if (!user) {
+              return done(null, false, { message: 'email' });
+            }
+            // todo: bcrypt
+            if (user.password !== password) {
+              return done(null, false, { message: 'password' });
+            }
+            return done(null, user);
+          })
+          .catch(done);
       })
     );
 
@@ -57,7 +67,7 @@ app
       '/login',
       passport.authenticate('local', {
         successRedirect: '/host',
-        failureRedirect: '/login'
+        failureRedirect: '/login?incorrect'
       })
     );
 
