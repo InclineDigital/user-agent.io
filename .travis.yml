@@ -32,6 +32,8 @@ before_deploy:
 - cf -v
 - cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORGANIZATION -s $CF_SPACE
 - cf install-plugin autopilot -f -r CF-Community
+- openssl aes-256-cbc -K $encrypted_dcb2cf609f5f_key -iv $encrypted_dcb2cf609f5f_iv -in manifest.yml.enc -out manifest.yml -d
+
 deploy:
   provider: script
   skip_cleanup: true

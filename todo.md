@@ -7,7 +7,7 @@
   * highlight the url on the host page
   * get a color scheme
 
-* get https working
+* automate https certificate renewal
 
 * build out account features to remember previous UAs
   * allow account creation
@@ -21,8 +21,15 @@
     * no prefix - check performance impact, consider preloading list into mem
   * on custom hit, store in db (probably as a new doc)
 
-* charge money
+* offer free open-source accounts
+
+* charge money for pro & business accounts
 
 * look into https://github.com/googleanalytics/autotrack#loading-autotrack-via-npm
 
 * figure out how to make antifreeze work
+
+* get useragent.io
+  * make https work there
+
+* blog

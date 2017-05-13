@@ -5,3 +5,5 @@ build/
 static/style.css
 tests/reports
 .eslintcache
+.env
+manifest.yml

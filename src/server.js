@@ -29,7 +29,7 @@ app
     server.use(
       session({
         name: 'session',
-        keys: ['todo: pull this from env'],
+        keys: [process.env.COOKIE_SECRET],
         maxAge: 365 * 24 * 60 * 60 * 1000
       })
     );
