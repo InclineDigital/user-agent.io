@@ -10,7 +10,7 @@
     "test-e2e": "npm run build && node e2e-runner.js",
     "autofix": "eslint . --fix",
     "dev": "nf start",
-    "build": "next build && npm run sass-build",
+    "build": "NODE_ENV=production next build && npm run sass-build",
     "sass-build": "node-sass static/style.scss --output-style compressed --include-path node_modules/bootstrap/scss/ static/style.css",
     "sass-dev": "node-sass static/style.scss --output-style expanded --watch --error-bell static/style.css",
     "deploy": "npm run build && cf zero-downtime-push user-agent -f manifest.yml",
@@ -44,7 +44,9 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-google-ad": "^1.0.2",
+    "react-stripe-checkout": "^2.2.5",
     "react-timeago": "^3.3.0",
+    "stripe": "^4.19.0",
     "ua-parser-js": "^0.7.12",
     "uuid": "^3.0.1",
     "vcap_services": "^0.3.4",
@@ -55,6 +57,7 @@
     "utf-8-validate": "^3.0.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-define": "^1.2.0",
     "bootstrap": "^4.0.0-alpha.6",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",

@@ -1,0 +1,8 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    ["transform-define", "./src/public-env-vars.js"]
+  ]
+}

@@ -8,6 +8,7 @@ const session = require('cookie-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const db = require('./db');
 
@@ -119,6 +120,33 @@ app
         }
       }
       res.redirect('/?shared=true');
+    });
+
+    server.post('/create-account', bodyParser.json(), (req, res) => {
+      console.log('create-account', req.body);
+      stripe.customers.create({
+        email: req.body.email,
+        source: req.body.token
+      })
+        .then(customer =>
+          Promise.all([customer, stripe.subscriptions.create({
+              customer: customer.id,
+              plan: req.body.plan
+            })])
+        )
+        .then(([customer, subscription]) =>
+          db.createUser({
+            email: req.body.email,
+            plan: req.body.plan,
+            stripeId: customer.id,
+            uas: []
+          })
+        )
+        .then(res.json.bind(res))
+        .catch(er => {
+            console.log('error creating account', er);
+            res.status(500).send('Error creating account');
+          })
     });
 
     // request expects named params to not contain a slash
